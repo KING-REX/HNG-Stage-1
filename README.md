@@ -1,66 +1,121 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Number Classification API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+The **Number Classification API** is a simple RESTful service that classifies a given number based on its mathematical properties and provides a fun fact about the number.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   Determines whether a number is **prime**.
+-   Checks if the number is a **perfect number**.
+-   Identifies if the number is an **Armstrong number**.
+-   Classifies the number as **odd** or **even**.
+-   Computes the **sum of its digits**.
+-   Fetches a **fun fact** about the number from the Numbers API.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## API Details
 
-## Learning Laravel
+### Base URL
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   Production: `https://inforet.free.nf/`
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Endpoint
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**GET /api/classify-number**
 
-## Laravel Sponsors
+**Query Parameter:**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+-   `number` (integer, required) - The number to classify.
 
-### Premium Partners
+### **Example Request:**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```sh
+GET <your-domain.com>/api/classify-number?number=371
+```
 
-## Contributing
+### **Response Format**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### **Success Response (200 OK)**
 
-## Code of Conduct
+```json
+{
+    "number": 371,
+    "is_prime": false,
+    "is_perfect": false,
+    "properties": ["armstrong", "odd"],
+    "digit_sum": 11,
+    "fun_fact": "371 is an Armstrong number because 3^3 + 7^3 + 1^3 = 371"
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### **Error Response (400 Bad Request)**
 
-## Security Vulnerabilities
+```json
+{
+    "number": "alphabet",
+    "error": true
+}
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Deployment
+
+The API is publicly accessible at:
+
+```
+<your-deployment-url>
+```
+
+## Installation & Running Locally
+
+### **Requirements:**
+
+-   Python 3.x / Node.js / Java / Go / C# (Choose your preferred tech stack)
+-   Dependencies installed via `pip/npm/maven` (depending on your chosen language)
+
+### **Setup Instructions:**
+
+1. **Clone the repository:**
+
+    ```sh
+    git clone https://github.com/<your-username>/number-classification-api.git
+    cd number-classification-api
+    ```
+
+2. **Install dependencies:**
+
+    ```sh
+    composer install
+    ```
+
+3. **Set Up the Environment File:**
+
+    ```sh
+    copy .env.example .env
+    php artisan key:generate
+    ```
+
+4. **Configure Environment Variables in `.env`:**
+
+    ```sh
+    APP_NAME="Example app name"
+    APP_ENV=local
+    APP_DEBUG=true
+    APP_URL=http://example-localhost
+    ```
+
+5. **Start the Development Server:**
+
+    ```sh
+    php artisan serve
+    ```
+
+The API should now be running at `http://example-localhost`
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License.
+
+## Technology Stack
+
+-   Laravel PHP Framework
+-   [Backlink: HNG Hire PHP Developers](https://hng.tech/hire/php-developers)
